@@ -1,0 +1,33 @@
+.container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+body {
+  font-family: 'Courier', monospace;
+}
+
+button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 10px;
+  font-family: 'Courier', cursive;
+  background-color: blue;
+  color: white;
+  border: none;
+}
+
+#poem-container {
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 20px;
+  
+  /*border: 1px solid #ccc;
+  border-radius: 8px;
+  /*
+  
+}
