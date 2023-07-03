@@ -24,17 +24,6 @@ function applyImageEffects(image, canvas) {
   ctx.clearRect(0, 0, width, height);
   ctx.drawImage(image, 0, 0, width, height);
 
-  const imageData = ctx.getImageData(0, 0, width, height);
-  const data = imageData.data;
-
-  // Apply grayscale effect
-  for (let i = 0; i < data.length; i += 4) {
-    const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-    data[i] = avg;
-    data[i + 1] = avg;
-    data[i + 2] = avg;
-  }
-
   // Apply pixelate effect with pixel size 2
   const pixelSize = 2;
   ctx.imageSmoothingEnabled = false;
@@ -61,11 +50,23 @@ function applyImageEffects(image, canvas) {
     height
   );
 
+  // Reduce saturation to the minimum value
+  const imageData = ctx.getImageData(0, 0, width, height);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const gray = 0.2989 * r + 0.587 * g + 0.114 * b;
+    data[i] = data[i + 1] = data[i + 2] = gray;
+  }
+  ctx.putImageData(imageData, 0, 0);
+
   // Apply blue color overlay
+  ctx.globalCompositeOperation = 'color';
   ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
   ctx.fillRect(0, 0, width, height);
-
-  ctx.putImageData(imageData, 0, 0);
+  ctx.globalCompositeOperation = 'source-over';
 }
 
 function loadRandomPoem() {
