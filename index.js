@@ -25,7 +25,7 @@ function applyImageEffects(image, canvas) {
   ctx.drawImage(image, 0, 0, width, height);
 
   // Apply pixelate effect with pixel size 2
-  const pixelSize = 2;
+  const pixelSize = 4;
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(
     canvas,
