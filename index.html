@@ -4,18 +4,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-<img src="https://i.ibb.co/Syj8MMG/img-blueish-pixelated.png" alt="blueish" border="0">
   <link rel="stylesheet" type="text/css" href="index.css">
+  <style>
+    .header {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>blueish</h1>
-        <canvas id="random-image"></canvas>
-        <br>
-        <br>
+    <div class="header">
+      <img src="https://i.ibb.co/Syj8MMG/img-blueish-pixelated.png" alt="blueish" border="0">
+    </div>
+    <canvas id="random-image"></canvas>
+    <br>
+    <br>
     <button id="MyButton" onclick="loadRandomPoem()">Generate Random Poem</button>
     <div id="poem-container"></div>
-
   </div>
   <script src="index.js"></script>
 </body>
