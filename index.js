@@ -50,7 +50,7 @@ function applyImageEffects(image, canvas) {
     height
   );
 
- // Convert the image to black and white
+  // Convert the image to black and white
   const imageData = ctx.getImageData(0, 0, width, height);
   const data = imageData.data;
   for (let i = 0; i < data.length; i += 4) {
@@ -59,8 +59,9 @@ function applyImageEffects(image, canvas) {
     const b = data[i + 2];
     const gray = 0.2989 * r + 0.587 * g + 0.114 * b;
     data[i] = data[i + 1] = data[i + 2] = gray;
+  }
+  ctx.putImageData(imageData, 0, 0);
 
-    
   // Apply blue color overlay
   ctx.globalCompositeOperation = 'color';
   ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
