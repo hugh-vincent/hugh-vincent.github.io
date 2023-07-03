@@ -1,11 +1,5 @@
-const poems = [
-  `pom1`,
-  `pom2`,
-  `pom3`,
-  // Add more poems as needed
-  ];
-
 let isLoadingImage = false;
+const poems = []; // Store the poem URLs fetched from the backend
 
 function loadImage(url) {
   return new Promise((resolve, reject) => {
@@ -58,12 +52,23 @@ function loadRandomPoem() {
 
   isLoadingImage = true;
 
-  const randomIndex = Math.floor(Math.random() * poems.length);
-  const poemText = poems[randomIndex];
-  const poemContainer = document.getElementById('poem-container');
-  poemContainer.innerHTML = poemText;
-
-  fetch('https://source.unsplash.com/random')
+  fetch('https://api.github.com/repos/hugh-vincent/main) // Adjust with your GitHub username and repository
+    .then(response => response.json())
+    .then(data => {
+      const poemFiles = data
+        .filter(file => file.name.startsWith('Poem') && file.name.endsWith('.txt'))
+        .map(file => file.download_url);
+      poems.push(...poemFiles);
+      const randomIndex = Math.floor(Math.random() * poems.length);
+      const poemUrl = poems[randomIndex];
+      return fetch(poemUrl);
+    })
+    .then(response => response.text())
+    .then(poemText => {
+      const poemContainer = document.getElementById('poem-container');
+      poemContainer.innerHTML = poemText;
+      return fetch('https://source.unsplash.com/random');
+    })
     .then(response => response.url)
     .then(imageUrl => loadImage(imageUrl))
     .then(image => {
