@@ -1,4 +1,3 @@
-// Array of poems
 const poems = [
   `There are no poems here`,
   `Blueish TWO...`,
@@ -6,7 +5,7 @@ const poems = [
   // Add more poems as needed
 ];
 
-let isLoadingImage = false; // Flag to track image loading state
+let isLoadingImage = false;
 
 function loadImage(url) {
   return new Promise((resolve, reject) => {
@@ -17,95 +16,87 @@ function loadImage(url) {
   });
 }
 
+function applyImageEffects(image, canvas) {
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+
+  ctx.clearRect(0, 0, width, height);
+  ctx.drawImage(image, 0, 0, width, height);
+
+  ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
+  ctx.fillRect(0, 0, width, height);
+
+  const imageData = ctx.getImageData(0, 0, width, height);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    data[i] = avg;
+    data[i + 1] = avg;
+    data[i + 2] = avg;
+  }
+  ctx.putImageData(imageData, 0, 0);
+
+  const pixelSize = 2;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(
+    canvas,
+    0,
+    0,
+    width,
+    height,
+    0,
+    0,
+    width / pixelSize,
+    height / pixelSize
+  );
+  ctx.drawImage(
+    canvas,
+    0,
+    0,
+    width / pixelSize,
+    height / pixelSize,
+    0,
+    0,
+    width,
+    height
+  );
+}
+
 function loadRandomPoem() {
   if (isLoadingImage) {
-    return; // Exit if an image is already loading
+    return;
   }
 
-  isLoadingImage = true; // Set the loading flag
+  isLoadingImage = true;
 
   const randomIndex = Math.floor(Math.random() * poems.length);
   const poemText = poems[randomIndex];
   const poemContainer = document.getElementById('poem-container');
   poemContainer.innerHTML = poemText;
 
-  // Fetch a random image from the internet
   fetch('https://source.unsplash.com/random')
     .then(response => response.url)
     .then(imageUrl => loadImage(imageUrl))
     .then(image => {
       const canvas = document.getElementById('random-image');
-      const ctx = canvas.getContext('2d');
-
-      // Set canvas size to desired stretched dimensions
-      const width = 256;
-      const height = 256;
-      canvas.width = width;
-      canvas.height = height;
-
-      // Clear the canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw the image on the canvas
-      ctx.drawImage(image, 0, 0, width, height);
-
-      // Convert to grayscale
-      const imageData = ctx.getImageData(0, 0, width, height);
-      const data = imageData.data;
-      for (let i = 0; i < data.length; i += 4) {
-        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        data[i] = avg;
-        data[i + 1] = avg;
-        data[i + 2] = avg;
-      }
-      ctx.putImageData(imageData, 0, 0);
-
-      // Apply blue color overlay
-      ctx.globalCompositeOperation = 'color';
-      ctx.fillStyle = 'rgba(0, 0, 255, 0.7)'; // Blue color with 70% opacity (adjust as needed)
-      ctx.fillRect(0, 0, width, height);
-      ctx.globalCompositeOperation = 'source-over';
-
-      // Apply pixelate effect with pixel size 2
-      const pixelSize = 2;
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(
-        canvas,
-        0,
-        0,
-        width,
-        height,
-        0,
-        0,
-        width / pixelSize,
-        height / pixelSize
-      );
-      ctx.drawImage(
-        canvas,
-        0,
-        0,
-        width / pixelSize,
-        height / pixelSize,
-        0,
-        0,
-        width,
-        height
-      );
-
-      isLoadingImage = false; // Reset the loading flag
+      canvas.width = 256;
+      canvas.height = 256;
+      applyImageEffects(image, canvas);
+      isLoadingImage = false;
     })
     .catch(error => {
       console.log(error);
-      isLoadingImage = false; // Reset the loading flag in case of an error
+      isLoadingImage = false;
     });
 }
 
 const button = document.getElementById('MyButton');
 button.addEventListener('mousedown', function () {
-  this.style.backgroundColor = 'white'; // Change button color to white
+  this.style.backgroundColor = 'white';
 });
 
 button.addEventListener('mouseup', function () {
-  this.style.backgroundColor = ''; // Reset button color to default
-  loadRandomPoem(); // Call the function to load a random poem and apply image adjustments
+  this.style.backgroundColor = '';
+  loadRandomPoem();
 });
