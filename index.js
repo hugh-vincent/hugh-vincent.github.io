@@ -1,8 +1,60 @@
 const poems = [
-  `There are no poems here`,
-  `Blueish TWO...`,
-  `Blueish the third!`,
+  `Action Man arrived
+in a lunar rover
+dressed as an astronaut.
+We turned the living room rug
+into the red valleys of Mars
+and drove all around.
+I never could have been an astronaut -
+the idea of space
+terrifies me.
+One slip and you’re lost forever.
+Punch your way out of that one,
+Action Man.`,
+
+  
+  `I spent all of my
+pocket money
+on plastic swords.
+They transported me
+as I walked down
+the hot, sandy
+pavement.
+I felt so powerful-
+I never wanted to be
+born here.
+I wanted to be a knight,
+a warrior, I even said so!
+But looking back,
+it all seems so cosy
+with words like
+‘Turbo’, ‘Max’ and ‘Ultra’
+everywhere.`,
+
+
+  
+  `I couldn’t believe
+my luck
+When Dad gave me
+his old Apple Mac.
+There was no internet,
+there were no games.
+Just me,
+in the reflection.
+I sat there in my
+little green room.
+Underneath the dormer window
+pretending to be a writer.
+Clack clack
+clack.
+Typing away
+at my very own
+Apple Mac.`,
+
+  
   // Add more poems as needed
+
+  
 ];
 
 let isLoadingImage = false;
