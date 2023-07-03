@@ -49,11 +49,48 @@ function loadRandomPoem() {
       // Draw the image on the canvas
       ctx.drawImage(image, 0, 0, width, height);
 
+      // Convert to grayscale
+      const imageData = ctx.getImageData(0, 0, width, height);
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        data[i] = avg;
+        data[i + 1] = avg;
+        data[i + 2] = avg;
+      }
+      ctx.putImageData(imageData, 0, 0);
+
       // Apply blue color overlay
+      ctx.globalCompositeOperation = 'color';
       ctx.fillStyle = 'rgba(0, 0, 255, 0.7)'; // Blue color with 70% opacity (adjust as needed)
-      ctx.globalCompositeOperation = 'source-atop';
       ctx.fillRect(0, 0, width, height);
       ctx.globalCompositeOperation = 'source-over';
+
+      // Apply pixelate effect with pixel size 2
+      const pixelSize = 2;
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(
+        canvas,
+        0,
+        0,
+        width,
+        height,
+        0,
+        0,
+        width / pixelSize,
+        height / pixelSize
+      );
+      ctx.drawImage(
+        canvas,
+        0,
+        0,
+        width / pixelSize,
+        height / pixelSize,
+        0,
+        0,
+        width,
+        height
+      );
 
       isLoadingImage = false; // Reset the loading flag
     })
@@ -70,5 +107,5 @@ button.addEventListener('mousedown', function () {
 
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = ''; // Reset button color to default
-  loadRandomPoem(); // Call the function to load a random poem and overlay the image with bluer color
+  loadRandomPoem(); // Call the function to load a random poem and apply image adjustments
 });
