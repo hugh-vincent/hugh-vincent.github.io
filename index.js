@@ -71,6 +71,20 @@ function loadRandomPoem() {
       console.log(error);
       isLoadingImage = false; // Reset the loading flag in case of an error
     });
+
+  // Generate a random MIDI note number between C3 and C5
+  const randomNote = Math.floor(Math.random() * (60 - 48 + 1)) + 48; // Range: 48 (C3) to 60 (C5)
+
+  // Convert the MIDI note number to frequency
+  const frequency = 440 * Math.pow(2, (randomNote - 69) / 12);
+
+  // Create an audio context and oscillator
+  const audioContext = new AudioContext();
+  const oscillator = audioContext.createOscillator();
+  oscillator.frequency.value = frequency; // Set the frequency of the sine wave
+  oscillator.connect(audioContext.destination);
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + 0.1); // Adjust the duration of the note if needed
 }
 
 const button = document.getElementById('MyButton');
@@ -80,5 +94,5 @@ button.addEventListener('mousedown', function () {
 
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = ''; // Reset button color to default
-  loadRandomPoem(); // Call the function to load a random poem
+  loadRandomPoem(); // Call the function to load a random poem and play the random pitch sine wave note
 });
