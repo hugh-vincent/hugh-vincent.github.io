@@ -52,7 +52,7 @@ function loadRandomPoem() {
 
   isLoadingImage = true;
 
-  fetch('https://api.github.com/repos/hugh-vincent/main) // Adjust with your GitHub username and repository
+  fetch('https://api.github.com/repos/hugh-vincent/hugh-vincent.github.io) // Adjust with your GitHub username and repository
     .then(response => response.json())
     .then(data => {
       const poemFiles = data
