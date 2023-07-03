@@ -50,8 +50,8 @@ function loadRandomPoem() {
       ctx.drawImage(image, 0, 0, width, height);
 
       // Apply blue color overlay
-      ctx.globalCompositeOperation = 'color';
       ctx.fillStyle = 'rgba(0, 0, 255, 0.7)'; // Blue color with 70% opacity (adjust as needed)
+      ctx.globalCompositeOperation = 'source-atop';
       ctx.fillRect(0, 0, width, height);
       ctx.globalCompositeOperation = 'source-over';
 
