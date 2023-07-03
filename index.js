@@ -1,5 +1,5 @@
 let isLoadingImage = false;
-const poems = []; // Store the poem URLs fetched from the backend
+const poems = [];
 
 function loadImage(url) {
   return new Promise((resolve, reject) => {
@@ -52,34 +52,55 @@ function loadRandomPoem() {
 
   isLoadingImage = true;
 
-  fetch('https://api.github.com/repos/hugh-vincent/hugh-vincent.github.io/contents) // Adjust with your GitHub username and repository
-    .then(response => response.json())
+  fetch('https://api.github.com/repos/hugh-vincent/hugh-vincent.github.io/contents')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch poem files.');
+      }
+      return response.json();
+    })
     .then(data => {
       const poemFiles = data
         .filter(file => file.name.startsWith('Poem') && file.name.endsWith('.txt'))
         .map(file => file.download_url);
+      if (poemFiles.length === 0) {
+        throw new Error('No poem files found.');
+      }
       poems.push(...poemFiles);
       const randomIndex = Math.floor(Math.random() * poems.length);
       const poemUrl = poems[randomIndex];
       return fetch(poemUrl);
     })
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch poem.');
+      }
+      return response.text();
+    })
     .then(poemText => {
       const poemContainer = document.getElementById('poem-container');
       poemContainer.innerHTML = poemText;
       return fetch('https://source.unsplash.com/random');
     })
-    .then(response => response.url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch image.');
+      }
+      return response.url;
+    })
     .then(imageUrl => loadImage(imageUrl))
     .then(image => {
       const canvas = document.getElementById('random-image');
+      if (!canvas) {
+        throw new Error('Canvas element not found.');
+      }
       canvas.width = 256;
       canvas.height = 256;
       applyImageEffects(image, canvas);
       isLoadingImage = false;
     })
     .catch(error => {
-      console.log(error);
+      console.error(error);
       isLoadingImage = false;
     });
 }
