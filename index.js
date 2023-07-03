@@ -46,24 +46,14 @@ function loadRandomPoem() {
       // Clear the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Pixelate the image
-      const pixelSize = 3; // Adjust the pixel size as needed
-      const scaledWidth = width / pixelSize;
-      const scaledHeight = height / pixelSize;
+      // Draw the image on the canvas
+      ctx.drawImage(image, 0, 0, width, height);
 
-      ctx.imageSmoothingEnabled = false; // Disable image smoothing
-      ctx.drawImage(image, 0, 0, scaledWidth, scaledHeight);
-      ctx.drawImage(
-        canvas,
-        0,
-        0,
-        scaledWidth,
-        scaledHeight,
-        0,
-        0,
-        width,
-        height
-      );
+      // Apply blue color overlay
+      ctx.globalCompositeOperation = 'color';
+      ctx.fillStyle = 'rgba(0, 0, 255, 0.5)'; // Blue color with 50% opacity
+      ctx.fillRect(0, 0, width, height);
+      ctx.globalCompositeOperation = 'source-over';
 
       isLoadingImage = false; // Reset the loading flag
     })
@@ -94,5 +84,5 @@ button.addEventListener('mousedown', function () {
 
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = ''; // Reset button color to default
-  loadRandomPoem(); // Call the function to load a random poem and play the random pitch sine wave note
+  loadRandomPoem(); // Call the function to load a random poem, overlay the image with blue, and play the random pitch sine wave note
 });
