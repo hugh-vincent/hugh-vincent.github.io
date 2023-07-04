@@ -2,7 +2,6 @@
   /* CSS rules for small screens */
 }
 
-
 .container {
   text-align: center;
   margin-top: 50px;
@@ -14,6 +13,7 @@ h1 {
 
 body {
   font-family: 'Courier', monospace;
+  cursor: none; /* Hide default cursor */
 }
 
 button {
@@ -30,21 +30,8 @@ button {
   font-size: 18px;
   line-height: 1.5;
   padding: 20px;
-  
-  /*border: 1px solid #ccc;
-  border-radius: 8px;
-  /*
-  
 }
 
-/* Add custom cursor styling */
-#custom-cursor {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-#custom-cursor img {
-  width: 32px; /* Adjust the width and height as needed */
-  height: 32px;
+.custom-cursor {
+  cursor: none;
 }
