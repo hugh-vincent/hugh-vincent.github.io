@@ -28,7 +28,19 @@
       <br>
       <button id="myButton" onclick="loadRandomPoem()">Generate Random Poem</button>
       <div id="poem-container"></div>
+      <div id="custom-cursor"></div>
     </div>
+    <script src="path/to/custom-cursor.min.js"></script>
     <script src="index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cursor = new CustomCursor({
+          elementId: 'custom-cursor',
+          imageSource: 'https://hugh-vincent.github.io/img_Cursor.png',
+          imageWidth: 32, // Adjust the width of your custom cursor image
+          imageHeight: 32, // Adjust the height of your custom cursor image
+        });
+      });
+    </script>
   </body>
 </html>
