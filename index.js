@@ -115,7 +115,7 @@ button.addEventListener('mouseup', function () {
 
   // Create an <audio> element and set its source URL
   const audio = document.createElement('audio');
-  audio.src = "http://soundfxcenter.com/video-games/final-fantasy-xi/8d82b5_Final_Fantasy_XI_Menu_Selection_Sound_Effect.mp3";
+  audio.src = "https://dl.sndup.net/td6t/FF_MenuSFX.mp3";
   
   // Play the audio
   audio.play();
