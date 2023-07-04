@@ -24,7 +24,10 @@ button {
   background-color: blue;
   color: white;
   border: none;
-  cursor: url('https://hugh-vincent.github.io/img_Cursor.png'), auto; /* Use custom cursor image for buttons */
+}
+
+button:hover {
+  cursor: url('https://hugh-vincent.github.io/img_Cursor.png'), auto; /* Use custom cursor image when hovering over buttons */
 }
 
 #poem-container {
@@ -35,4 +38,8 @@ button {
 
 .custom-cursor {
   cursor: none;
+}
+
+.custom-cursor-ignore {
+  cursor: auto !important; /* Reset cursor style for elements with class "custom-cursor-ignore" */
 }
