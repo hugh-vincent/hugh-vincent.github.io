@@ -35,8 +35,3 @@ button {
 .custom-cursor {
   cursor: none;
 }
-
-#myButton:hover #custom-cursor {
-  width: 38.4px;
-  height: 38.4px;
-}
