@@ -52,7 +52,8 @@ function loadRandomPoem() {
 
   isLoadingImage = true;
 
-  fetch('https://api.github.com/repos/hugh-vincent/hugh-vincent.github.io/contents')
+  fetch('https://api.github.com/repos/hugh-vincent/hugh-vincent.github.io
+/blueish')
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to fetch poem files.');
