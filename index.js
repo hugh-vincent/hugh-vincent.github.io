@@ -107,7 +107,7 @@ function loadRandomPoem() {
 
 const button = document.getElementById('myButton');
 button.addEventListener('mousedown', function () {
-  this.style.backgroundColor = 'white';
+  this.style.backgroundColor = 'darkblue'; //changes button colour when clicked
 });
 
 button.addEventListener('mouseup', function () {
