@@ -105,33 +105,8 @@ function loadRandomPoem() {
     });
 }
 
-//Button Code
-
 const button = document.getElementById('myButton');
-
-function handleInteraction(event) {
-  event.preventDefault();
-  this.style.backgroundColor = 'darkblue'; // changes button color when clicked or touched
-}
-
-function handleRelease() {
-  this.style.backgroundColor = ''; // resets button color when released
-}
-
-button.addEventListener('click', function() {
-  const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
-  audio.play();
-  loadRandomPoem();
-
-  // Create an <audio> element and set its source URL
-  const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
-
-  // Play the audio
-  audio.play();
-
-  loadRandomPoem();
-});
-
+button.addEventListener('click', loadRandomPoem);
 
 // Add custom cursor for desktop users
 if (!window.matchMedia('(pointer: coarse)').matches) {
@@ -144,30 +119,29 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   cursorImage.style.height = '32px'; // Adjust the initial height of the cursor image
   cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
 
-  const button = document.getElementById('myButton');
-  button.style.cursor = 'none'; // Hide the default cursor when hovering over the button
-
-  button.addEventListener('mouseenter', () => {
-    const currentWidth = parseFloat(cursorImage.style.width);
-    const currentHeight = parseFloat(cursorImage.style.height);
-    const newWidth = currentWidth * 1.2; // Increase width by 20%
-    const newHeight = currentHeight * 1.2; // Increase height by 20%
-    cursorImage.style.width = newWidth + 'px';
-    cursorImage.style.height = newHeight + 'px';
-  });
-
-  button.addEventListener('mouseleave', () => {
-    cursorImage.style.width = '32px'; // Reset the width to the initial value
-    cursorImage.style.height = '32px'; // Reset the height to the initial value
-  });
-
   document.addEventListener('mousemove', (event) => {
-    if (!event.target.classList.contains('custom-cursor-ignore')) {
-      cursorImage.style.left = event.pageX + 'px';
-      cursorImage.style.top = event.pageY + 'px';
-    }
+    cursorImage.style.left = event.pageX + 'px';
+    cursorImage.style.top = event.pageY + 'px';
   });
 
   document.body.appendChild(cursorImage);
+
+  const customCursor = document.getElementById('custom-cursor');
+
+  document.addEventListener('mousemove', (event) => {
+    customCursor.style.left = event.pageX + 'px';
+    customCursor.style.top = event.pageY + 'px';
+  });
+
+  const ignoreElements = document.getElementsByClassName('custom-cursor-ignore');
+
+  for (let i = 0; i < ignoreElements.length; i++) {
+    ignoreElements[i].addEventListener('mouseenter', () => {
+      customCursor.style.opacity = 0;
+    });
+    ignoreElements[i].addEventListener('mouseleave', () => {
+      customCursor.style.opacity = 1;
+    });
+  }
 }
 
