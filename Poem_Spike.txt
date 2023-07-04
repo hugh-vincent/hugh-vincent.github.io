@@ -1,10 +1,7 @@
 <b>Spike</b>
-<p>
-Stranded alone <br>
 
+<p>Stranded alone <br>
 in a witches’ lair<br>
-
 You have no teeth, <br>
-
 You have no hair<br>
 </p>
