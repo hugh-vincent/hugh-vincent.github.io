@@ -105,6 +105,8 @@ function loadRandomPoem() {
     });
 }
 
+////BUTTONS///////
+
 const button = document.getElementById('myButton');
 button.addEventListener('click', loadRandomPoem);
 
@@ -134,7 +136,46 @@ button.addEventListener('touchstart', handleInteraction);
 
 button.addEventListener('mouseup', handleRelease);
 button.addEventListener('touchend', handleRelease);
-);
+
+
+// Add custom cursor for desktop users
+if (!window.matchMedia('(pointer: coarse)').matches) {
+  const cursorImage = new Image();
+  cursorImage.src = 'https://hugh-vincent.github.io/img_Cursor.png';
+  cursorImage.style.position = 'fixed';
+  cursorImage.style.pointerEvents = 'none';
+  cursorImage.style.zIndex = '9999';
+  cursorImage.style.width = '32px'; // Adjust the initial width of the cursor image
+  cursorImage.style.height = '32px'; // Adjust the initial height of the cursor image
+  cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
+
+  document.addEventListener('mousemove', (event) => {
+    cursorImage.style.left = event.pageX + 'px';
+    cursorImage.style.top = event.pageY + 'px';
+  });
+
+  document.body.appendChild(cursorImage);
+
+  const customCursor = document.getElementById('custom-cursor');
+
+  document.addEventListener('mousemove', (event) => {
+    customCursor.style.left = event.pageX + 'px';
+    customCursor.style.top = event.pageY + 'px';
+  });
+
+  const ignoreElements = document.getElementsByClassName('custom-cursor-ignore');
+
+  for (let i = 0; i < ignoreElements.length; i++) {
+    ignoreElements[i].addEventListener('mouseenter', () => {
+      customCursor.style.opacity = 0;
+    });
+    ignoreElements[i].addEventListener('mouseleave', () => {
+      customCursor.style.opacity = 1;
+    });
+  }
+}
+
+////END OF BUTTONS///////
 
 
 // Add custom cursor for desktop users
