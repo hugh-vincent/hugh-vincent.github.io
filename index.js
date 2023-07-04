@@ -105,16 +105,20 @@ function loadRandomPoem() {
     });
 }
 
-const button = document.getElementById('MyButton');
+const button = document.getElementById('myButton');
 button.addEventListener('mousedown', function () {
   this.style.backgroundColor = 'white';
 });
 
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = '';
-  loadRandomPoem();
+
+  // Create an <audio> element and set its source URL
+  const audio = document.createElement('audio');
+  audio.src = "http://soundfxcenter.com/video-games/final-fantasy-xi/8d82b5_Final_Fantasy_XI_Menu_Selection_Sound_Effect.mp3";
   
-  // Play sound when button is released
-  var audio = new Audio("http://soundfxcenter.com/video-games/final-fantasy-xi/8d82b5_Final_Fantasy_XI_Menu_Selection_Sound_Effect.mp3");
+  // Play the audio
   audio.play();
+
+  loadRandomPoem();
 });
