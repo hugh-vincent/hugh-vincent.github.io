@@ -106,13 +106,20 @@ function loadRandomPoem() {
 }
 
 const button = document.getElementById('myButton');
-button.addEventListener('mousedown', function () {
-  this.style.backgroundColor = 'darkblue'; //changes button colour when clicked
-});
 
-button.addEventListener('mouseup', function () {
-  this.style.backgroundColor = '';
+button.addEventListener('mousedown', handleInteraction);
+button.addEventListener('touchstart', handleInteraction);
 
+button.addEventListener('mouseup', handleRelease);
+button.addEventListener('touchend', handleRelease);
+
+function handleInteraction() {
+  this.style.backgroundColor = 'darkblue'; // changes button color when clicked or touched
+}
+
+function handleRelease() {
+  this.style.backgroundColor = ''; // resets button color when released
+}
   // Create an <audio> element and set its source URL
   const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
 
