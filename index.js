@@ -113,16 +113,17 @@ button.addEventListener('mousedown', function () {
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = '';
 
-  // Create an <audio> element and set its source URL
-  const audio = new Audio("https://dl.sndup.net/td6t/FF_MenuSFX.mp3");
+  const audioUrl = 'https://dl.sndup.net/td6t/FF_MenuSFX.mp3';
 
-  // Add an event listener to play the audio when it's loaded
-  audio.addEventListener('canplaythrough', function() {
-    audio.play();
-  });
-
-  // Load the audio
-  audio.load();
+  fetch(audioUrl)
+    .then(response => response.blob())
+    .then(blob => {
+      const audio = new Audio(URL.createObjectURL(blob));
+      audio.play();
+    })
+    .catch(error => {
+      console.error('Failed to load audio:', error);
+    });
 
   loadRandomPoem();
 });
