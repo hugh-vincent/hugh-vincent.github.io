@@ -124,16 +124,19 @@ button.addEventListener('mouseup', function () {
 
 // Add custom cursor for desktop users
 if (!window.matchMedia('(pointer: coarse)').matches) {
-const cursorImage = new Image();
-cursorImage.src = 'https://hugh-vincent.github.io/img_Cursor.png';
-cursorImage.style.position = 'fixed';
-cursorImage.style.pointerEvents = 'none';
-cursorImage.style.zIndex = '9999';
+  const cursorImage = new Image();
+  cursorImage.src = 'https://hugh-vincent.github.io/img_Cursor.png';
+  cursorImage.style.position = 'fixed';
+  cursorImage.style.pointerEvents = 'none';
+  cursorImage.style.zIndex = '9999';
+  cursorImage.style.width = '16px'; // Adjust the width of the cursor image
+  cursorImage.style.height = '16px'; // Adjust the height of the cursor image
+  cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
 
-document.addEventListener('mousemove', (event) => {
-cursorImage.style.left = event.pageX + 'px';
-cursorImage.style.top = event.pageY + 'px';
-});
+  document.addEventListener('mousemove', (event) => {
+    cursorImage.style.left = event.pageX + 'px';
+    cursorImage.style.top = event.pageY + 'px';
+  });
 
-document.body.appendChild(cursorImage);
+  document.body.appendChild(cursorImage);
 }
