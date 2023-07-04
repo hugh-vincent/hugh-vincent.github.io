@@ -18,8 +18,8 @@ body {
 
 button {
   margin-bottom: 20px;
-  padding: 15px 80px;
-  font-size: 14px;
+  padding: 15px 256px;
+  font-size: 20px;
   font-family: 'Courier', cursive;
   background-color: blue;
   color: white;
