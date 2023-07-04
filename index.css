@@ -26,6 +26,10 @@ button {
   border: none;
 }
 
+button:hover {
+  cursor: url('https://hugh-vincent.github.io/img_Cursor.png'), auto; /* Use custom cursor image when hovering over buttons */
+}
+
 #poem-container {
   font-size: 18px;
   line-height: 1.5;
