@@ -139,8 +139,8 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   button.addEventListener('mouseenter', () => {
     const currentWidth = parseFloat(cursorImage.style.width);
     const currentHeight = parseFloat(cursorImage.style.height);
-    const newWidth = currentWidth * 1.1; // Increase width by 10%
-    const newHeight = currentHeight * 1.1; // Increase height by 10%
+    const newWidth = currentWidth * 1.2; // Increase width by 20%
+    const newHeight = currentHeight * 1.2; // Increase height by 20%
     cursorImage.style.width = newWidth + 'px';
     cursorImage.style.height = newHeight + 'px';
   });
