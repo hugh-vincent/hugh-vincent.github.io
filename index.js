@@ -196,29 +196,17 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
 
   document.body.appendChild(cursorImage);
 
-  const customCursor = document.getElementById('custom-cursor');
+  const buttons = document.getElementsByTagName('button');
 
-  document.addEventListener('mousemove', (event) => {
-    customCursor.style.left = event.pageX + 'px';
-    customCursor.style.top = event.pageY + 'px';
-  });
-
-  const ignoreElements = document.getElementsByClassName('custom-cursor-ignore');
-
-  for (let i = 0; i < ignoreElements.length; i++) {
-    ignoreElements[i].addEventListener('mouseenter', () => {
-      customCursor.style.opacity = 0;
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('mouseenter', () => {
+      cursorImage.style.width = '38.4px'; // Increase cursor size by 20%
+      cursorImage.style.height = '38.4px'; // Increase cursor size by 20%
     });
-    ignoreElements[i].addEventListener('mouseleave', () => {
-      customCursor.style.opacity = 1;
+
+    buttons[i].addEventListener('mouseleave', () => {
+      cursorImage.style.width = '32px'; // Reset cursor size
+      cursorImage.style.height = '32px'; // Reset cursor size
     });
   }
-
-  const button = document.getElementById('myButton');
-  const defaultCursor = document.querySelector('body');
-
-  // Hide the default cursor when hovering over the button
-  button.addEventListener('mouseenter', () => {
-    defaultCursor.style.cursor = 'none';
-  });
 }
