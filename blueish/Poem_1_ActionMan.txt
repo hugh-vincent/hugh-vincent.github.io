@@ -1,5 +1,6 @@
-<p><strong>Action Man</strong></p>
-<p>Action Man arrived
+<b>Action Man</b><br>
+<br>
+Action Man arrived
 in a lunar rover
 dressed as an astronaut.
 <br>
