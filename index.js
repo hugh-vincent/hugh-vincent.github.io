@@ -114,11 +114,15 @@ button.addEventListener('mouseup', function () {
   this.style.backgroundColor = '';
 
   // Create an <audio> element and set its source URL
-  const audio = document.createElement('audio');
-  audio.src = "https://dl.sndup.net/td6t/FF_MenuSFX.mp3";
-  
-  // Play the audio
-  audio.play();
+  const audio = new Audio("https://dl.sndup.net/td6t/FF_MenuSFX.mp3");
+
+  // Add an event listener to play the audio when it's loaded
+  audio.addEventListener('canplaythrough', function() {
+    audio.play();
+  });
+
+  // Load the audio
+  audio.load();
 
   loadRandomPoem();
 });
