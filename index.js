@@ -197,16 +197,22 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   document.body.appendChild(cursorImage);
 
   const buttons = document.getElementsByTagName('button');
+  const defaultCursor = document.querySelector('body');
 
+  // Hide the default cursor
+  defaultCursor.style.cursor = 'none';
+
+  // Enlarge the custom cursor by 20% when hovering over a button
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('mouseenter', () => {
-      cursorImage.style.width = '38.4px'; // Increase cursor size by 20%
-      cursorImage.style.height = '38.4px'; // Increase cursor size by 20%
+      cursorImage.style.width = '38.4px';
+      cursorImage.style.height = '38.4px';
     });
 
+    // Reset the custom cursor size when leaving a button
     buttons[i].addEventListener('mouseleave', () => {
-      cursorImage.style.width = '32px'; // Reset cursor size
-      cursorImage.style.height = '32px'; // Reset cursor size
+      cursorImage.style.width = '32px';
+      cursorImage.style.height = '32px';
     });
   }
 }
