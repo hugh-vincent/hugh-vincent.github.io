@@ -121,3 +121,8 @@ button.addEventListener('mouseup', function () {
 
   loadRandomPoem();
 });
+
+// Add custom cursor for desktop users
+if (!window.matchMedia('(pointer: coarse)').matches) {
+  document.body.style.cursor = `url(https://hugh-vincent.github.io/img_Cursor.png), auto`;
+}
