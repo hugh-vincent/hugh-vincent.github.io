@@ -134,7 +134,7 @@ button.addEventListener('touchstart', handleInteraction);
 
 button.addEventListener('mouseup', handleRelease);
 button.addEventListener('touchend', handleRelease);
-});
+);
 
 
 // Add custom cursor for desktop users
