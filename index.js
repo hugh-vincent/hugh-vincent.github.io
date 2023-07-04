@@ -105,7 +105,7 @@ function loadRandomPoem() {
     });
 }
 
-const button = document.getElementById('myButton');
+const button = document.getElementById('MyButton');
 button.addEventListener('mousedown', function () {
   this.style.backgroundColor = 'white';
 });
@@ -113,17 +113,11 @@ button.addEventListener('mousedown', function () {
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = '';
 
-  const audioUrl = 'https://dl.sndup.net/td6t/FF_MenuSFX.mp3';
+  // Create an <audio> element and set its source URL
+  const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
 
-  fetch(audioUrl)
-    .then(response => response.blob())
-    .then(blob => {
-      const audio = new Audio(URL.createObjectURL(blob));
-      audio.play();
-    })
-    .catch(error => {
-      console.error('Failed to load audio:', error);
-    });
+  // Play the audio
+  audio.play();
 
   loadRandomPoem();
 });
