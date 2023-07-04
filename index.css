@@ -24,10 +24,7 @@ button {
   background-color: blue;
   color: white;
   border: none;
-}
-
-button:hover {
-  cursor: url('https://hugh-vincent.github.io/img_Cursor.png'), auto; /* Use custom cursor image when hovering over buttons */
+  cursor: url('https://hugh-vincent.github.io/img_Cursor.png'), auto; /* Use custom cursor image for buttons */
 }
 
 #poem-container {
