@@ -108,8 +108,6 @@ function loadRandomPoem() {
 const button = document.getElementById('myButton');
 button.addEventListener('click', loadRandomPoem);
 
-const button = document.getElementById('myButton');
-
 function handleInteraction(event) {
   event.preventDefault();
   this.style.backgroundColor = 'darkblue'; // changes button color when clicked or touched
@@ -119,10 +117,23 @@ function handleRelease() {
   this.style.backgroundColor = ''; // resets button color when released
 }
 
-button.addEventListener('click', function() {
+button.addEventListener('mousedown', function() {
   const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
   audio.play();
   loadRandomPoem();
+});
+
+button.addEventListener('touchstart', function() {
+  const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
+  audio.play();
+  loadRandomPoem();
+});
+
+button.addEventListener('mousedown', handleInteraction);
+button.addEventListener('touchstart', handleInteraction);
+
+button.addEventListener('mouseup', handleRelease);
+button.addEventListener('touchend', handleRelease);
 });
 
 
