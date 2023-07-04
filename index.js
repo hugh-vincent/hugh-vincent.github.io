@@ -134,6 +134,8 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
 
   const button = document.getElementById('myButton');
+  button.style.cursor = 'none'; // Hide the default cursor when hovering over the button
+
   button.addEventListener('mouseenter', () => {
     const currentWidth = parseFloat(cursorImage.style.width);
     const currentHeight = parseFloat(cursorImage.style.height);
@@ -157,3 +159,4 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
 
   document.body.appendChild(cursorImage);
 }
+
