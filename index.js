@@ -105,7 +105,7 @@ function loadRandomPoem() {
     });
 }
 
-const button = document.getElementById('MyButton');
+const button = document.getElementById('myButton');
 button.addEventListener('mousedown', function () {
   this.style.backgroundColor = 'white';
 });
