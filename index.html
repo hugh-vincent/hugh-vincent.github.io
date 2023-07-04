@@ -14,6 +14,18 @@
           height: auto;
         }
       }
+
+      /* Add custom cursor styling */
+      #custom-cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      #custom-cursor img {
+        width: 32px; /* Adjust the width and height as needed */
+        height: 32px;
+      }
     </style>
   </head>
   <body>
@@ -26,21 +38,10 @@
       <canvas id="random-image"></canvas>
       <br>
       <br>
-      <button id="myButton" onclick="loadRandomPoem()">Generate Random Poem</button>
+      <button id="myButton">Generate Random Poem</button>
       <div id="poem-container"></div>
-      <div id="custom-cursor"></div>
     </div>
-    <script src="path/to/custom-cursor.min.js"></script>
+    <div id="custom-cursor"></div> <!-- Add the custom cursor element -->
     <script src="index.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const cursor = new CustomCursor({
-          elementId: 'custom-cursor',
-          imageSource: 'https://hugh-vincent.github.io/img_Cursor.png',
-          imageWidth: 32, // Adjust the width of your custom cursor image
-          imageHeight: 32, // Adjust the height of your custom cursor image
-        });
-      });
-    </script>
   </body>
 </html>
