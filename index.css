@@ -26,6 +26,10 @@ button {
   border: none;
 }
 
+button:hover {
+  cursor: none; /* Hide the cursor when hovering over buttons */
+}
+
 #poem-container {
   font-size: 18px;
   line-height: 1.5;
