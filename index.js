@@ -189,8 +189,6 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   cursorImage.style.height = '32px'; // Adjust the initial height of the cursor image
   cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
 
-  
-
   document.addEventListener('mousemove', (event) => {
     cursorImage.style.left = event.pageX + 'px';
     cursorImage.style.top = event.pageY + 'px';
@@ -213,15 +211,14 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
     });
     ignoreElements[i].addEventListener('mouseleave', () => {
       customCursor.style.opacity = 1;
-
-      const button = document.getElementById('myButton');
-const defaultCursor = document.querySelector('body');
-
-// Hide the default cursor when hovering over the button
-button.addEventListener('mouseenter', () => {
-  defaultCursor.style.cursor = 'none';
-});
     });
   }
-}
 
+  const button = document.getElementById('myButton');
+  const defaultCursor = document.querySelector('body');
+
+  // Hide the default cursor when hovering over the button
+  button.addEventListener('mouseenter', () => {
+    defaultCursor.style.cursor = 'none';
+  });
+}
