@@ -134,8 +134,10 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
 
   document.addEventListener('mousemove', (event) => {
-    cursorImage.style.left = event.pageX + 'px';
-    cursorImage.style.top = event.pageY + 'px';
+    if (!event.target.classList.contains('custom-cursor-ignore')) {
+      cursorImage.style.left = event.pageX + 'px';
+      cursorImage.style.top = event.pageY + 'px';
+    }
   });
 
   document.body.appendChild(cursorImage);
