@@ -36,3 +36,15 @@ button {
   /*
   
 }
+
+/* Add custom cursor styling */
+#custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#custom-cursor img {
+  width: 32px; /* Adjust the width and height as needed */
+  height: 32px;
+}
