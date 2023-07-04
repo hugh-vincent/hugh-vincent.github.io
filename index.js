@@ -129,9 +129,24 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   cursorImage.style.position = 'fixed';
   cursorImage.style.pointerEvents = 'none';
   cursorImage.style.zIndex = '9999';
-  cursorImage.style.width = '32px'; // Adjust the width of the cursor image
-  cursorImage.style.height = '32px'; // Adjust the height of the cursor image
+  cursorImage.style.width = '32px'; // Adjust the initial width of the cursor image
+  cursorImage.style.height = '32px'; // Adjust the initial height of the cursor image
   cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
+
+  const button = document.getElementById('myButton');
+  button.addEventListener('mouseenter', () => {
+    const currentWidth = parseFloat(cursorImage.style.width);
+    const currentHeight = parseFloat(cursorImage.style.height);
+    const newWidth = currentWidth * 1.1; // Increase width by 10%
+    const newHeight = currentHeight * 1.1; // Increase height by 10%
+    cursorImage.style.width = newWidth + 'px';
+    cursorImage.style.height = newHeight + 'px';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    cursorImage.style.width = '32px'; // Reset the width to the initial value
+    cursorImage.style.height = '32px'; // Reset the height to the initial value
+  });
 
   document.addEventListener('mousemove', (event) => {
     if (!event.target.classList.contains('custom-cursor-ignore')) {
