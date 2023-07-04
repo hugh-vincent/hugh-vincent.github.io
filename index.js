@@ -113,4 +113,8 @@ button.addEventListener('mousedown', function () {
 button.addEventListener('mouseup', function () {
   this.style.backgroundColor = '';
   loadRandomPoem();
+  
+  // Play sound when button is released
+  var audio = new Audio("http://soundfxcenter.com/video-games/final-fantasy-xi/8d82b5_Final_Fantasy_XI_Menu_Selection_Sound_Effect.mp3");
+  audio.play();
 });
