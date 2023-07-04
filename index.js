@@ -104,6 +104,9 @@ function loadRandomPoem() {
       isLoadingImage = false;
     });
 }
+
+//Button Code
+
 const button = document.getElementById('myButton');
 
 function handleInteraction(event) {
@@ -119,7 +122,6 @@ button.addEventListener('click', function() {
   const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
   audio.play();
   loadRandomPoem();
-});
 
   // Create an <audio> element and set its source URL
   const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
@@ -129,6 +131,7 @@ button.addEventListener('click', function() {
 
   loadRandomPoem();
 });
+
 
 // Add custom cursor for desktop users
 if (!window.matchMedia('(pointer: coarse)').matches) {
