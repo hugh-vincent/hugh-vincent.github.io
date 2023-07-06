@@ -26,7 +26,7 @@ button {
 }
 
 button:hover {
-  /* Remove "cursor: none;" to show the cursor when hovering over buttons */
+cursor: none;
 }
 
 #poem-container {
