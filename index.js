@@ -72,12 +72,14 @@ function loadRandomPoem() {
       const lastPoemIndex = poems.length - 1;
       let randomIndex;
       
-      // Check if the previous poem exists in the array
-      if (lastPoemIndex >= 0 && poemFiles.includes(poems[lastPoemIndex])) {
-        // Generate a random index excluding the last poem
-        randomIndex = Math.floor(Math.random() * (poemFiles.length - 1));
-        if (randomIndex >= lastPoemIndex) {
-          randomIndex++; // Adjust the index if it's greater than or equal to the last poem index
+      if (lastPoemIndex >= 0) {
+        // Generate a random index excluding the last 5 poems
+        randomIndex = Math.floor(Math.random() * (poemFiles.length - 5));
+        for (let i = 0; i < 5; i++) {
+          if (poemFiles[randomIndex] === poems[lastPoemIndex - i]) {
+            randomIndex++; // Skip the current poem and move to the next
+            i = -1; // Reset the loop index to check the skipped poem again
+          }
         }
       } else {
         // Generate a completely random index
