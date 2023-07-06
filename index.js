@@ -45,6 +45,8 @@ function applyImageEffects(image, canvas) {
   );
 }
 
+//////LOADS RANDOM POEM ////////////
+
 function loadRandomPoem() {
   if (isLoadingImage) {
     return;
@@ -66,9 +68,23 @@ function loadRandomPoem() {
       if (poemFiles.length === 0) {
         throw new Error('No poem files found.');
       }
-      poems.push(...poemFiles);
-      const randomIndex = Math.floor(Math.random() * poems.length);
-      const poemUrl = poems[randomIndex];
+
+      const lastPoemIndex = poems.length - 1;
+      let randomIndex;
+      
+      // Check if the previous poem exists in the array
+      if (lastPoemIndex >= 0 && poemFiles.includes(poems[lastPoemIndex])) {
+        // Generate a random index excluding the last poem
+        randomIndex = Math.floor(Math.random() * (poemFiles.length - 1));
+        if (randomIndex >= lastPoemIndex) {
+          randomIndex++; // Adjust the index if it's greater than or equal to the last poem index
+        }
+      } else {
+        // Generate a completely random index
+        randomIndex = Math.floor(Math.random() * poemFiles.length);
+      }
+      
+      const poemUrl = poemFiles[randomIndex];
       return fetch(poemUrl);
     })
     .then(response => {
