@@ -197,10 +197,14 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   document.body.appendChild(cursorImage);
 
   const buttons = document.getElementsByTagName('button');
-  const defaultCursor = document.querySelector('body');
 
-  // Hide the default cursor
-  defaultCursor.style.cursor = 'none';
+  const style = document.createElement('style');
+  style.innerHTML = `
+    body {
+      cursor: none;
+    }
+  `;
+  document.head.appendChild(style);
 
   // Enlarge the custom cursor by 20% when hovering over a button
   for (let i = 0; i < buttons.length; i++) {
