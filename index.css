@@ -13,7 +13,6 @@ h1 {
 
 body {
   font-family: 'Courier', monospace;
-  cursor: none; /* Hide default cursor */
 }
 
 button {
@@ -27,7 +26,7 @@ button {
 }
 
 button:hover {
-  cursor: none; /* Hide the cursor when hovering over buttons */
+  /* Remove "cursor: none;" to show the cursor when hovering over buttons */
 }
 
 #poem-container {
@@ -37,7 +36,7 @@ button:hover {
 }
 
 .custom-cursor {
-  cursor: none;
+  cursor: none; /* Hide default cursor for elements with class "custom-cursor" */
 }
 
 .custom-cursor-ignore {
