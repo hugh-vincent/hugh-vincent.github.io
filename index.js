@@ -87,7 +87,7 @@ function loadRandomPoem() {
     .then(poemText => {
       const poemContainer = document.getElementById('poem-container');
       poemContainer.innerHTML = poemText;
-      return fetch('https://source.unsplash.com/random');
+      return fetch('https://source.unsplash.com/random/?blue');
     })
     .then(response => {
       if (!response.ok) {
