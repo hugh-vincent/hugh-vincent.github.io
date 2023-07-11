@@ -12,40 +12,16 @@ function loadImage(url) {
 
 function applyImageEffects(image, canvas) {
   const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
+  const { width, height } = canvas;
 
   ctx.clearRect(0, 0, width, height);
   ctx.drawImage(image, 0, 0, width, height);
 
-  // Apply pixelate effect with pixel size 2
   const pixelSize = 4;
   ctx.imageSmoothingEnabled = false;
-  ctx.drawImage(
-    canvas,
-    0,
-    0,
-    width,
-    height,
-    0,
-    0,
-    width / pixelSize,
-    height / pixelSize
-  );
-  ctx.drawImage(
-    canvas,
-    0,
-    0,
-    width / pixelSize,
-    height / pixelSize,
-    0,
-    0,
-    width,
-    height
-  );
+  ctx.drawImage(canvas, 0, 0, width, height, 0, 0, width / pixelSize, height / pixelSize);
+  ctx.drawImage(canvas, 0, 0, width / pixelSize, height / pixelSize, 0, 0, width, height);
 }
-
-//////LOADS RANDOM POEM ////////////
 
 let lastPoemUrl = '';
 
@@ -112,27 +88,25 @@ function loadRandomPoem() {
     });
 }
 
-////BUTTONS///////
-
 const button = document.getElementById('myButton');
 button.addEventListener('click', loadRandomPoem);
 
-function handleInteraction(event) {
+const handleInteraction = (event) => {
   event.preventDefault();
-  this.style.backgroundColor = 'darkblue'; // changes button color when clicked or touched
-}
+  button.style.backgroundColor = 'darkblue';
+};
 
-function handleRelease() {
-  this.style.backgroundColor = ''; // resets button color when released
-}
+const handleRelease = () => {
+  button.style.backgroundColor = '';
+};
 
-button.addEventListener('mousedown', function() {
+button.addEventListener('mousedown', () => {
   const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
   audio.play();
   loadRandomPoem();
 });
 
-button.addEventListener('touchstart', function() {
+button.addEventListener('touchstart', () => {
   const audio = new Audio('https://hugh-vincent.github.io/Click_SFX.mp3');
   audio.play();
   loadRandomPoem();
@@ -144,17 +118,15 @@ button.addEventListener('touchstart', handleInteraction);
 button.addEventListener('mouseup', handleRelease);
 button.addEventListener('touchend', handleRelease);
 
-
-// Add custom cursor for desktop users
 if (!window.matchMedia('(pointer: coarse)').matches) {
   const cursorImage = new Image();
   cursorImage.src = 'https://hugh-vincent.github.io/img_Cursor.png';
   cursorImage.style.position = 'fixed';
   cursorImage.style.pointerEvents = 'none';
   cursorImage.style.zIndex = '9999';
-  cursorImage.style.width = '32px'; // Adjust the initial width of the cursor image
-  cursorImage.style.height = '32px'; // Adjust the initial height of the cursor image
-  cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
+  cursorImage.style.width = '32px';
+  cursorImage.style.height = '32px';
+  cursorImage.style.transform = 'translate(-50%, -50%)';
 
   document.addEventListener('mousemove', (event) => {
     cursorImage.style.left = event.pageX + 'px';
@@ -162,13 +134,6 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   });
 
   document.body.appendChild(cursorImage);
-
-  const customCursor = document.getElementById('custom-cursor');
-
-  document.addEventListener('mousemove', (event) => {
-    customCursor.style.left = event.pageX + 'px';
-    customCursor.style.top = event.pageY + 'px';
-  });
 
   const ignoreElements = document.getElementsByClassName('custom-cursor-ignore');
 
@@ -182,19 +147,15 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   }
 }
 
-////END OF BUTTONS///////
-
-
-// Add custom cursor for desktop users
 if (!window.matchMedia('(pointer: coarse)').matches) {
   const cursorImage = new Image();
   cursorImage.src = 'https://hugh-vincent.github.io/img_Cursor.png';
   cursorImage.style.position = 'fixed';
   cursorImage.style.pointerEvents = 'none';
   cursorImage.style.zIndex = '9999';
-  cursorImage.style.width = '32px'; // Adjust the initial width of the cursor image
-  cursorImage.style.height = '32px'; // Adjust the initial height of the cursor image
-  cursorImage.style.transform = 'translate(-50%, -50%)'; // Center the cursor image
+  cursorImage.style.width = '32px';
+  cursorImage.style.height = '32px';
+  cursorImage.style.transform = 'translate(-50%, -50%)';
 
   document.addEventListener('mousemove', (event) => {
     cursorImage.style.left = event.pageX + 'px';
@@ -213,14 +174,12 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
   `;
   document.head.appendChild(style);
 
-  // Enlarge the custom cursor by 20% when hovering over a button
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('mouseenter', () => {
       cursorImage.style.width = '38.4px';
       cursorImage.style.height = '38.4px';
     });
 
-    // Reset the custom cursor size when leaving a button
     buttons[i].addEventListener('mouseleave', () => {
       cursorImage.style.width = '32px';
       cursorImage.style.height = '32px';
