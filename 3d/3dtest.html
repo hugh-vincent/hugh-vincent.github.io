@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include the Three.js library using a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Include the FBXLoader.js script -->
+    <script src="https://threejs.org/examples/js/loaders/FBXLoader.js"></script>
+
+    <style>
+        body {
+            background-color: #fac239;
+            color: #000;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            margin: 1;
+        }
+
+        h1 {
+            margin-bottom: 0px;
+        }
+
+        p {
+            margin-top: 0px;
+        }
+
+        a {
+            color: #000;
+        }
+
+        #canvas-container {
+            width: 400px;
+            height: 400px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #copyright-text {
+            font-size: 12px;
+            margin-top: 100px;
+        }
+
+    </style>
+
+    <style>
+        audio::-webkit-media-controls-play-button {
+            background-color: rgba(250, 194, 57);
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(250, 194, 57);
+        }
+    </style>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <title>Yard Nule ♫ // HOME</title>
+</head>
+<body>
+    <h1>yard nule</h1>
+    <p>
+        エレクトロニカ・アンビエント・デュオ <br>UK Leftfield/Ambient Duo
+        <br><i>New Album "TURBOMAXULTRA" Coming Soon... ♫♪</i>
+    </p>
+
+    <div id="canvas-container"></div>
+
+    <div id="audio-container">
+        <audio controls>
+            <source src="https://github.com/hugh-vincent/hugh-vincent.github.io/raw/main/dexed.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="container" id="footer-container">
+        <p>*</p>
+        <p>[ <a href="https://yardnule.bandcamp.com" target="_blank">Bandcamp</a> | <a href="https://www.instagram.com/yardnule/" target="_blank">Instagram</a> | <a href="https://open.spotify.com/artist/10Q2LdV5T7zeV27daL70yq" target="_blank">Spotify</a> | <a href="mailto:yardnule@gmail.com">Email</a> ] <br>
+            <a href="https://yardnule.com/projects.html" target="_blank">[Projects]</a> | <a href="https://yardnule.com/releases.html" target="_blank">[Releases]</a> | <a href="https://yardnule.com/about.html" target="_blank">[About]</a>
+        </p>
+        <p id="copyright-text"><img src='https://raw.githubusercontent.com/hugh-vincent/hugh-vincent.github.io/main/moons.webp' width=36px>  <br>Copyright © 2023 - Yard Nule  </p>
+    </div>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(30, 400 / 300, 0.1, 1000);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(400, 300);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Create an FBXLoader instance
+        const loader = new THREE.FBXLoader();
+
+        // Load the "kaze.fbx" model
+        loader.load('https://github.com/hugh-vincent/hugh-vincent.github.io/raw/main/3d/kaze.fbx', (model) => {
+            // Create a wireframe material
+            const wireframeMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true });
+
+            // Apply the wireframe material to the loaded model
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    child.material = wireframeMaterial;
+                }
+            });
+
+            // Add the loaded model to the scene
+            scene.add(model);
+
+            // Set the initial position and scale of the model
+            model.position.set(0, 0, 0);
+            model.scale.set(1, 1, 1);
+        });
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+</body>
+</html>
